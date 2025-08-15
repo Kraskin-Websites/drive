@@ -1,539 +1,218 @@
+Perdão! Aqui vai **um único arquivo completo (HTML + CSS + JS)**, com o visual preto/dourado, os ajustes de JavaScript corrigidos e o **envio direto para o WhatsApp** no número `+55 51 99140-2626`.
+
+```html
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <title>Executive Driver - Motorista Executivo</title>
+    <meta name="description" content="Executive Driver - Transporte executivo premium com conforto, segurança e pontualidade. Viagens, transfers, hotéis e acompanhamento de idosos. Agende pelo WhatsApp.">
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        :root{
+            --bg:#1a1a1a;
+            --bg-2:#2a2a2a;
+            --text:#ffffff;
+            --muted:#cccccc;
+            --line:#333;
+            --accent:#d4af37;
+            --accent-2:#f4d03f;
         }
 
-        body {
-            font-family: 'Georgia', 'Times New Roman', serif;
-            background-color: #1a1a1a;
-            color: #ffffff;
+        html{ scroll-behavior:smooth; }
+
+        body{
+            font-family: 'Georgia','Times New Roman',serif;
+            background: var(--bg);
+            color: var(--text);
             line-height: 1.6;
             overflow-x: hidden;
         }
 
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 20px;
-        }
+        .container{ max-width:1200px; margin:0 auto; padding:0 20px; }
 
         /* Header */
-        header {
-            background: rgba(26, 26, 26, 0.95);
+        header{
+            background: rgba(26,26,26,.95);
             backdrop-filter: blur(10px);
-            position: fixed;
-            top: 0;
-            width: 100%;
-            z-index: 1000;
+            position: fixed; top:0; left:0; width:100%;
+            z-index:1000;
             padding: 15px 0;
-            border-bottom: 1px solid #d4af37;
+            border-bottom: 1px solid var(--accent);
+            transition: background .25s ease;
+        }
+        nav{ display:flex; justify-content:space-between; align-items:center; }
+        .logo{ font-size:24px; font-weight:bold; color:var(--accent); letter-spacing:2px; }
+        .nav-links{ display:flex; list-style:none; gap:30px; }
+        .nav-links a{
+            color:#fff; text-decoration:none; font-size:16px; letter-spacing:1px; transition: color .3s ease;
+        }
+        .nav-links a:hover{ color:var(--accent); }
+        .mobile-menu-btn{
+            display:none; background:none; border:none; color:var(--accent); font-size:26px; cursor:pointer;
         }
 
-        nav {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .logo {
-            font-size: 24px;
-            font-weight: bold;
-            color: #d4af37;
-            letter-spacing: 2px;
-        }
-
-        .nav-links {
-            display: flex;
-            list-style: none;
-            gap: 30px;
-        }
-
-        .nav-links a {
-            color: #ffffff;
-            text-decoration: none;
-            font-size: 16px;
-            transition: color 0.3s ease;
-            letter-spacing: 1px;
-        }
-
-        .nav-links a:hover {
-            color: #d4af37;
-        }
-
-        /* Hero Section */
-        .hero {
+        /* Hero */
+        .hero{
             height: 100vh;
-            background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 800"><rect fill="%23000" width="1200" height="800"/></svg>');
-            background-size: cover;
-            background-position: center;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            text-align: center;
-            position: relative;
+            background: linear-gradient(rgba(0,0,0,.6), rgba(0,0,0,.6)),
+                        url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 800"><rect fill="%23000" width="1200" height="800"/></svg>');
+            background-size: cover; background-position: center;
+            display:flex; align-items:center; justify-content:center; text-align:center; position:relative;
+        }
+        .hero-content{ max-width:800px; padding:0 20px; }
+        .hero h1{
+            font-size: 4rem; margin-bottom:20px; color:var(--accent); letter-spacing:3px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,.8);
+        }
+        .hero p{ font-size:1.5rem; margin-bottom:30px; color:var(--muted); letter-spacing:1px; }
+        .cta-button{
+            display:inline-block; background: linear-gradient(45deg, var(--accent), var(--accent-2));
+            color: #1a1a1a; padding: 15px 40px; text-decoration:none; border-radius: 8px; font-weight:bold; font-size:18px; letter-spacing:1px;
+            transition: all .3s ease; border:2px solid var(--accent);
+        }
+        .cta-button:hover{
+            background: transparent; color: var(--accent); transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(212,175,55,.3);
         }
 
-        .hero-content {
-            max-width: 800px;
-            padding: 0 20px;
+        /* Sections */
+        .services{ padding:100px 0; background: var(--bg-2); }
+        .about{ padding:100px 0; background: var(--bg); }
+        .booking{ padding:100px 0; background: var(--bg-2); }
+
+        .section-title{
+            text-align:center; font-size:3rem; margin-bottom:60px; color:var(--accent); letter-spacing:2px;
         }
 
-        .hero h1 {
-            font-size: 4rem;
-            margin-bottom: 20px;
-            color: #d4af37;
-            letter-spacing: 3px;
-            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
+        /* Services grid */
+        .services-grid{
+            display:grid; grid-template-columns: repeat(auto-fit,minmax(320px,1fr)); gap:40px; margin-top: 40px;
         }
+        .service-card{
+            background: var(--bg); padding: 40px; border-radius: 12px; text-align:center;
+            border: 2px solid var(--line); transition: all .3s ease; position:relative; overflow:hidden;
+        }
+        .service-card::before{
+            content:''; position:absolute; top:0; left:-100%; width:100%; height:100%;
+            background: linear-gradient(90deg, transparent, rgba(212,175,55,.12), transparent);
+            transition: left .5s ease;
+        }
+        .service-card:hover::before{ left:100%; }
+        .service-card:hover{ border-color: var(--accent); transform: translateY(-5px); box-shadow: 0 10px 30px rgba(212,175,55,.18); }
+        .service-icon{
+            width:82px; height:82px; margin:0 auto 18px; background: var(--accent); border-radius: 50%;
+            display:flex; align-items:center; justify-content:center; font-size:2rem; color:#1a1a1a;
+        }
+        .service-card h3{ font-size:1.7rem; margin-bottom:12px; color:var(--accent); letter-spacing:1px; }
+        .service-card p{ color:var(--muted); font-size:1.05rem; line-height:1.8; }
 
-        .hero p {
-            font-size: 1.5rem;
-            margin-bottom: 30px;
-            color: #cccccc;
-            letter-spacing: 1px;
+        /* About */
+        .about-content{
+            display:grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items:center;
         }
+        .about-text h2{ font-size:2.4rem; margin-bottom:24px; color:var(--accent); letter-spacing:2px; }
+        .about-text p{ font-size:1.1rem; color:var(--muted); margin-bottom:16px; line-height:1.8; }
+        .about-image{text-align:center;}
+        .about-image img{ max-width:100%; border-radius:10px; border:3px solid var(--accent); }
 
-        .cta-button {
-            display: inline-block;
-            background: linear-gradient(45deg, #d4af37, #f4d03f);
-            color: #1a1a1a;
-            padding: 15px 40px;
-            text-decoration: none;
-            border-radius: 5px;
-            font-weight: bold;
-            font-size: 18px;
-            letter-spacing: 1px;
-            transition: all 0.3s ease;
-            border: 2px solid #d4af37;
+        /* Booking */
+        .booking-container{
+            display:grid; grid-template-columns: 1fr 1fr; gap:60px; align-items:start;
         }
+        .booking-form, .driver-profile{
+            background: var(--bg); padding: 40px; border-radius: 12px; border:2px solid var(--line);
+        }
+        .booking-form h3, .driver-profile h3{
+            font-size:2rem; margin-bottom:26px; color:var(--accent); text-align:center; letter-spacing:1px;
+        }
+        .form-group{ margin-bottom:22px; }
+        .form-group label{
+            display:block; margin-bottom:8px; color:var(--accent); font-weight:bold; letter-spacing:1px;
+        }
+        .form-group input, .form-group select, .form-group textarea{
+            width:100%; padding:12px; background:#333; border:2px solid #555; border-radius:8px; color:#fff; font-size:16px; transition: border-color .25s ease;
+        }
+        .form-group input:focus, .form-group select:focus, .form-group textarea:focus{ outline:none; border-color: var(--accent); }
 
-        .cta-button:hover {
-            background: transparent;
-            color: #d4af37;
-            transform: translateY(-2px);
-            box-shadow: 0 5px 15px rgba(212, 175, 55, 0.3);
+        .profile-options{ display:grid; gap:16px; }
+        .profile-option{
+            background:#333; padding:18px; border-radius:10px; border:2px solid #555; cursor:pointer; transition: all .25s ease;
         }
+        .profile-option:hover, .profile-option.selected{
+            border-color: var(--accent); background: rgba(212,175,55,.10);
+        }
+        .profile-option h4{ color:var(--accent); margin-bottom:6px; font-size:1.25rem; }
+        .profile-option p{ color:var(--muted); }
 
-        /* Services Section */
-        .services {
-            padding: 100px 0;
-            background: #2a2a2a;
+        .submit-btn{
+            width:100%; background: linear-gradient(45deg, var(--accent), var(--accent-2)); color:#1a1a1a;
+            padding:14px; border:none; border-radius:8px; font-size:18px; font-weight:bold; letter-spacing:1px; cursor:pointer; transition: all .25s ease; margin-top: 6px;
         }
-
-        .section-title {
-            text-align: center;
-            font-size: 3rem;
-            margin-bottom: 60px;
-            color: #d4af37;
-            letter-spacing: 2px;
-        }
-
-        .services-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-            gap: 40px;
-            margin-top: 60px;
-        }
-
-        .service-card {
-            background: #1a1a1a;
-            padding: 40px;
-            border-radius: 10px;
-            text-align: center;
-            border: 2px solid #333;
-            transition: all 0.3s ease;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .service-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(212, 175, 55, 0.1), transparent);
-            transition: left 0.5s ease;
-        }
-
-        .service-card:hover::before {
-            left: 100%;
-        }
-
-        .service-card:hover {
-            border-color: #d4af37;
-            transform: translateY(-5px);
-            box-shadow: 0 10px 30px rgba(212, 175, 55, 0.2);
-        }
-
-        .service-icon {
-            width: 80px;
-            height: 80px;
-            margin: 0 auto 20px;
-            background: #d4af37;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 2rem;
-            color: #1a1a1a;
-        }
-
-        .service-card h3 {
-            font-size: 1.8rem;
-            margin-bottom: 15px;
-            color: #d4af37;
-            letter-spacing: 1px;
-        }
-
-        .service-card p {
-            color: #cccccc;
-            font-size: 1.1rem;
-            line-height: 1.8;
-        }
-
-        /* About Section */
-        .about {
-            padding: 100px 0;
-            background: #1a1a1a;
-        }
-
-        .about-content {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 60px;
-            align-items: center;
-        }
-
-        .about-text h2 {
-            font-size: 2.5rem;
-            margin-bottom: 30px;
-            color: #d4af37;
-            letter-spacing: 2px;
-        }
-
-        .about-text p {
-            font-size: 1.2rem;
-            color: #cccccc;
-            margin-bottom: 20px;
-            line-height: 1.8;
-        }
-
-        .about-image {
-            text-align: center;
-        }
-
-        .about-image img {
-            max-width: 100%;
-            border-radius: 10px;
-            border: 3px solid #d4af37;
-        }
-
-        /* Booking Section */
-        .booking {
-            padding: 100px 0;
-            background: #2a2a2a;
-        }
-
-        .booking-container {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 60px;
-            align-items: start;
-        }
-
-        .booking-form {
-            background: #1a1a1a;
-            padding: 40px;
-            border-radius: 10px;
-            border: 2px solid #333;
-        }
-
-        .booking-form h3 {
-            font-size: 2rem;
-            margin-bottom: 30px;
-            color: #d4af37;
-            text-align: center;
-            letter-spacing: 1px;
-        }
-
-        .form-group {
-            margin-bottom: 25px;
-        }
-
-        .form-group label {
-            display: block;
-            margin-bottom: 8px;
-            color: #d4af37;
-            font-weight: bold;
-            letter-spacing: 1px;
-        }
-
-        .form-group input,
-        .form-group select,
-        .form-group textarea {
-            width: 100%;
-            padding: 12px;
-            background: #333;
-            border: 2px solid #555;
-            border-radius: 5px;
-            color: #ffffff;
-            font-size: 16px;
-            transition: border-color 0.3s ease;
-        }
-
-        .form-group input:focus,
-        .form-group select:focus,
-        .form-group textarea:focus {
-            outline: none;
-            border-color: #d4af37;
-        }
-
-        .driver-profile {
-            background: #1a1a1a;
-            padding: 40px;
-            border-radius: 10px;
-            border: 2px solid #333;
-        }
-
-        .driver-profile h3 {
-            font-size: 2rem;
-            margin-bottom: 30px;
-            color: #d4af37;
-            text-align: center;
-            letter-spacing: 1px;
-        }
-
-        .profile-options {
-            display: grid;
-            gap: 20px;
-        }
-
-        .profile-option {
-            background: #333;
-            padding: 20px;
-            border-radius: 8px;
-            border: 2px solid #555;
-            cursor: pointer;
-            transition: all 0.3s ease;
-        }
-
-        .profile-option:hover,
-        .profile-option.selected {
-            border-color: #d4af37;
-            background: rgba(212, 175, 55, 0.1);
-        }
-
-        .profile-option h4 {
-            color: #d4af37;
-            margin-bottom: 10px;
-            font-size: 1.3rem;
-        }
-
-        .profile-option p {
-            color: #cccccc;
-            line-height: 1.6;
-        }
-
-        .submit-btn {
-            width: 100%;
-            background: linear-gradient(45deg, #d4af37, #f4d03f);
-            color: #1a1a1a;
-            padding: 15px;
-            border: none;
-            border-radius: 5px;
-            font-size: 18px;
-            font-weight: bold;
-            letter-spacing: 1px;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            margin-top: 20px;
-        }
-
-        .submit-btn:hover {
-            background: linear-gradient(45deg, #f4d03f, #d4af37);
-            transform: translateY(-2px);
-            box-shadow: 0 5px 15px rgba(212, 175, 55, 0.3);
-        }
+        .submit-btn:hover{ background: linear-gradient(45deg, var(--accent-2), var(--accent)); transform: translateY(-2px); box-shadow: 0 5px 15px rgba(212,175,55,.28); }
+        .submit-btn:disabled{ opacity:.7; cursor:not-allowed; }
 
         /* Footer */
-        footer {
-            background: #0a0a0a;
-            padding: 50px 0 30px;
-            text-align: center;
-            border-top: 2px solid #d4af37;
+        footer{
+            background:#0a0a0a; padding: 50px 0 30px; text-align:center; border-top:2px solid var(--accent);
         }
-
-        .footer-content {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 40px;
-            margin-bottom: 30px;
+        .footer-content{
+            display:grid; grid-template-columns: repeat(auto-fit, minmax(250px,1fr)); gap:40px; margin-bottom:30px;
         }
-
-        .footer-section h3 {
-            color: #d4af37;
-            margin-bottom: 20px;
-            font-size: 1.5rem;
-            letter-spacing: 1px;
-        }
-
-        .footer-section p,
-        .footer-section a {
-            color: #cccccc;
-            text-decoration: none;
-            line-height: 1.8;
-            transition: color 0.3s ease;
-        }
-
-        .footer-section a:hover {
-            color: #d4af37;
-        }
-
-        .footer-bottom {
-            border-top: 1px solid #333;
-            padding-top: 20px;
-            color: #888;
-        }
-
-        /* Mobile Menu */
-        .mobile-menu-btn {
-            display: none;
-            background: none;
-            border: none;
-            color: #d4af37;
-            font-size: 24px;
-            cursor: pointer;
-        }
-
-        /* Responsive Design */
-        @media (max-width: 768px) {
-            .mobile-menu-btn {
-                display: block;
-            }
-
-            .nav-links {
-                display: none;
-                position: absolute;
-                top: 100%;
-                left: 0;
-                width: 100%;
-                background: #1a1a1a;
-                flex-direction: column;
-                padding: 20px;
-                border-top: 1px solid #d4af37;
-            }
-
-            .nav-links.active {
-                display: flex;
-            }
-
-            .hero h1 {
-                font-size: 2.5rem;
-            }
-
-            .hero p {
-                font-size: 1.2rem;
-            }
-
-            .section-title {
-                font-size: 2rem;
-            }
-
-            .services-grid {
-                grid-template-columns: 1fr;
-                gap: 30px;
-            }
-
-            .about-content {
-                grid-template-columns: 1fr;
-                gap: 40px;
-            }
-
-            .booking-container {
-                grid-template-columns: 1fr;
-                gap: 40px;
-            }
-
-            .footer-content {
-                grid-template-columns: 1fr;
-                gap: 30px;
-            }
-        }
-
-        @media (max-width: 480px) {
-            .container {
-                padding: 0 15px;
-            }
-
-            .hero h1 {
-                font-size: 2rem;
-            }
-
-            .hero p {
-                font-size: 1rem;
-            }
-
-            .service-card,
-            .booking-form,
-            .driver-profile {
-                padding: 25px;
-            }
-
-            .cta-button {
-                padding: 12px 30px;
-                font-size: 16px;
-            }
-        }
+        .footer-section h3{ color:var(--accent); margin-bottom:16px; font-size:1.35rem; letter-spacing:1px; }
+        .footer-section p, .footer-section a{ color:var(--muted); text-decoration:none; line-height:1.8; transition: color .25s ease; }
+        .footer-section a:hover{ color:var(--accent); }
+        .footer-bottom{ border-top:1px solid var(--line); padding-top:18px; color:#888; font-size:.95rem; }
 
         /* Animations */
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
+        @keyframes fadeInUp{
+            from{ opacity:0; transform: translateY(30px); }
+            to{ opacity:1; transform: translateY(0); }
         }
+        .fade-in-up{ animation: fadeInUp .8s ease-out; }
 
-        .fade-in-up {
-            animation: fadeInUp 0.8s ease-out;
+        /* Responsive */
+        @media (max-width: 968px){
+            .about-content{ grid-template-columns: 1fr; gap:40px; }
+            .booking-container{ grid-template-columns: 1fr; gap:40px; }
         }
-
-        /* Smooth scrolling */
-        html {
-            scroll-behavior: smooth;
+        @media (max-width: 768px){
+            .mobile-menu-btn{ display:block; }
+            .nav-links{
+                display:none; position:absolute; top:100%; left:0; width:100%; background:var(--bg);
+                flex-direction:column; padding:18px 20px; border-top:1px solid var(--accent);
+            }
+            .nav-links.active{ display:flex; }
+            .hero h1{ font-size: 2.6rem; }
+            .hero p{ font-size: 1.15rem; }
+            .section-title{ font-size:2.1rem; }
+        }
+        @media (max-width: 480px){
+            .container{ padding:0 15px; }
+            .service-card, .booking-form, .driver-profile{ padding:26px; }
+            .cta-button{ padding:12px 30px; font-size:16px; }
         }
     </style>
 </head>
 <body>
     <!-- Header -->
     <header>
-        <nav class="container">
+        <nav class="container" aria-label="Navegação principal">
             <div class="logo">EXECUTIVE DRIVER</div>
-            <ul class="nav-links">
+            <ul class="nav-links" id="navLinks">
                 <li><a href="#home">Início</a></li>
                 <li><a href="#services">Serviços</a></li>
                 <li><a href="#about">Sobre</a></li>
                 <li><a href="#booking">Agendamento</a></li>
                 <li><a href="#contact">Contato</a></li>
             </ul>
-            <button class="mobile-menu-btn" onclick="toggleMobileMenu()">☰</button>
+            <button class="mobile-menu-btn" aria-label="Abrir menu de navegação" onclick="toggleMobileMenu()">☰</button>
         </nav>
     </header>
 
-    <!-- Hero Section -->
+    <!-- Hero -->
     <section id="home" class="hero">
         <div class="hero-content fade-in-up">
             <h1>EXECUTIVE DRIVER</h1>
@@ -542,110 +221,121 @@
         </div>
     </section>
 
-    <!-- Services Section -->
+    <!-- Services -->
     <section id="services" class="services">
         <div class="container">
             <h2 class="section-title">Nossos Serviços</h2>
             <div class="services-grid">
                 <div class="service-card fade-in-up">
-                    <div class="service-icon">✈️</div>
+                    <div class="service-icon" aria-hidden="true">✈️</div>
                     <h3>Viagens Executivas</h3>
-                    <p>Transporte executivo para viagens de negócios, aeroportos e eventos corporativos. Pontualidade e discrição garantidas para profissionais exigentes.</p>
+                    <p>Transporte executivo para viagens de negócios, aeroportos e eventos corporativos. Pontualidade e discrição garantidas.</p>
                 </div>
                 <div class="service-card fade-in-up">
-                    <div class="service-icon">🏥</div>
+                    <div class="service-icon" aria-hidden="true">🏥</div>
                     <h3>Acompanhamento de Idosos</h3>
-                    <p>Serviço especializado para acompanhar idosos a consultas médicas e exames. Cuidado, paciência e assistência personalizada em todos os momentos.</p>
+                    <p>Para consultas e exames, com cuidado e assistência personalizada durante todo o trajeto.</p>
                 </div>
                 <div class="service-card fade-in-up">
-                    <div class="service-icon">🏨</div>
+                    <div class="service-icon" aria-hidden="true">🏨</div>
                     <h3>Serviços para Hotéis</h3>
-                    <p>Transporte premium para hóspedes de hotéis. Recepção no aeroporto, city tours e translados com o mais alto padrão de qualidade e conforto.</p>
+                    <p>Recepção no aeroporto, city tours e translados com alto padrão de qualidade e conforto.</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- About Section -->
+    <!-- About -->
     <section id="about" class="about">
         <div class="container">
             <div class="about-content">
                 <div class="about-text fade-in-up">
                     <h2>Excelência em Transporte Executivo</h2>
-                    <p>Com anos de experiência no mercado, oferecemos serviços de motorista executivo para clientes que valorizam qualidade, pontualidade e discrição.</p>
-                    <p>Nossa frota é composta por veículos de luxo, sempre limpos e em perfeito estado de conservação. Nossos motoristas são profissionais qualificados, uniformizados e treinados para oferecer o melhor atendimento.</p>
-                    <p>Atendemos executivos, advogados, médicos, turistas e todos que buscam um serviço de transporte diferenciado na região.</p>
+                    <p>Anos de experiência oferecendo qualidade, pontualidade e discrição.</p>
+                    <p>Veículos de luxo, sempre limpos e revisados. Motoristas uniformizados e treinados para o melhor atendimento.</p>
+                    <p>Atendemos executivos, profissionais liberais, turistas e todos que buscam um serviço diferenciado.</p>
                 </div>
                 <div class="about-image fade-in-up">
-                    <img src="motorista_carro_luxo.png" alt="Motorista Executivo Profissional" style="max-width: 100%; height: auto;">
+                    <img src="https://via.placeholder.com/800x520?text=Motorista+Executivo" alt="Motorista executivo ao lado de carro de luxo">
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Booking Section -->
+    <!-- Booking -->
     <section id="booking" class="booking">
         <div class="container">
             <h2 class="section-title">Faça seu Agendamento</h2>
             <div class="booking-container">
+                <!-- Form -->
                 <div class="booking-form fade-in-up">
                     <h3>Solicitar Serviço</h3>
-                    <form id="bookingForm">
+                    <form id="bookingForm" novalidate>
                         <div class="form-group">
                             <label for="name">Nome Completo</label>
-                            <input type="text" id="name" name="name" required>
+                            <input type="text" id="name" name="name" autocomplete="name" required>
                         </div>
+
                         <div class="form-group">
                             <label for="phone">Telefone</label>
-                            <input type="tel" id="phone" name="phone" required>
+                            <input type="tel" id="phone" name="phone" inputmode="tel" placeholder="(51) 9 9140-2626" required>
                         </div>
+
                         <div class="form-group">
                             <label for="email">E-mail</label>
-                            <input type="email" id="email" name="email" required>
+                            <input type="email" id="email" name="email" autocomplete="email" required>
                         </div>
+
                         <div class="form-group">
                             <label for="service">Tipo de Serviço</label>
                             <select id="service" name="service" required>
                                 <option value="">Selecione o serviço</option>
-                                <option value="viagem">Viagem Executiva</option>
-                                <option value="idoso">Acompanhamento de Idosos</option>
-                                <option value="hotel">Serviços para Hotéis</option>
+                                <option value="Viagem Executiva">Viagem Executiva</option>
+                                <option value="Acompanhamento de Idosos">Acompanhamento de Idosos</option>
+                                <option value="Serviços para Hotéis">Serviços para Hotéis</option>
                             </select>
                         </div>
+
                         <div class="form-group">
                             <label for="date">Data do Serviço</label>
                             <input type="date" id="date" name="date" required>
                         </div>
+
                         <div class="form-group">
                             <label for="time">Horário</label>
                             <input type="time" id="time" name="time" required>
                         </div>
+
                         <div class="form-group">
                             <label for="pickup">Local de Embarque</label>
                             <input type="text" id="pickup" name="pickup" required>
                         </div>
+
                         <div class="form-group">
                             <label for="destination">Destino</label>
                             <input type="text" id="destination" name="destination" required>
                         </div>
+
                         <div class="form-group">
                             <label for="observations">Observações</label>
-                            <textarea id="observations" name="observations" rows="3" placeholder="Informações adicionais sobre o serviço"></textarea>
+                            <textarea id="observations" name="observations" rows="3" placeholder="Informações adicionais (ex.: número do voo, bagagens, retorno...)"></textarea>
                         </div>
-                        <button type="submit" class="submit-btn">Enviar Solicitação</button>
+
+                        <button type="submit" class="submit-btn" aria-label="Enviar solicitação via WhatsApp">Enviar Solicitação</button>
                     </form>
                 </div>
 
+                <!-- Driver profile -->
                 <div class="driver-profile fade-in-up">
                     <h3>Escolha o Perfil do Motorista</h3>
-                    <div class="profile-options">
-                        <div class="profile-option" onclick="selectProfile('discreto')">
+                    <div class="profile-options" role="group" aria-label="Seleção de perfil do motorista">
+                        <div class="profile-option" onclick="selectProfile('Discreto', this)">
                             <h4>🤐 Perfil Discreto</h4>
-                            <p>Motorista reservado, focado na condução. Ideal para quem prefere silêncio durante o trajeto ou precisa trabalhar/descansar no veículo.</p>
+                            <p>Reservado e focado na condução. Ideal para silêncio, descanso ou trabalho.</p>
                         </div>
-                        <div class="profile-option" onclick="selectProfile('comunicativo')">
+                        <div class="profile-option" onclick="selectProfile('Comunicativo', this)">
                             <h4>💬 Perfil Comunicativo</h4>
-                            <p>Motorista cordial e comunicativo. Perfeito para quem gosta de conversar, conhecer a cidade ou receber dicas locais durante o percurso.</p>
+                            <p>Cordial e conversador. Ótimo para dicas locais e trajetos turísticos.</p>
                         </div>
                     </div>
                     <input type="hidden" id="driverProfile" name="driverProfile" form="bookingForm">
@@ -660,7 +350,7 @@
             <div class="footer-content">
                 <div class="footer-section">
                     <h3>Contato</h3>
-                    <p>📞 (11) 99999-9999</p>
+                    <p>📞 (51) 99140-2626</p>
                     <p>📧 contato@executivedriver.com.br</p>
                     <p>📍 São Paulo - SP</p>
                 </div>
@@ -672,128 +362,142 @@
                 </div>
                 <div class="footer-section">
                     <h3>Redes Sociais</h3>
-                    <p><a href="#">Facebook</a></p>
-                    <p><a href="#">Instagram</a></p>
-                    <p><a href="#">LinkedIn</a></p>
+                    <p><a href="#" aria-label="Facebook da Executive Driver">Facebook</a></p>
+                    <p><a href="#" aria-label="Instagram da Executive Driver">Instagram</a></p>
+                    <p><a href="#" aria-label="LinkedIn da Executive Driver">LinkedIn</a></p>
                 </div>
             </div>
             <div class="footer-bottom">
-                <p>&copy; 2024 Executive Driver. Todos os direitos reservados.</p>
+                <p>&copy; 2025 Executive Driver. Todos os direitos reservados.</p>
             </div>
         </div>
     </footer>
 
     <script>
-        // Mobile menu toggle
-        function toggleMobileMenu() {
-            const navLinks = document.querySelector('.nav-links');
+        // ====== Configuração do WhatsApp ======
+        const WHATS_NUMBER = '5551991402626'; // +55 51 99140-2626
+
+        // ====== Menu mobile ======
+        function toggleMobileMenu(){
+            const navLinks = document.getElementById('navLinks');
             navLinks.classList.toggle('active');
         }
 
-        // Driver profile selection
-        function selectProfile(profile) {
-            const options = document.querySelectorAll('.profile-option');
-            options.forEach(option => option.classList.remove('selected'));
-            
-            event.target.closest('.profile-option').classList.add('selected');
-            document.getElementById('driverProfile').value = profile;
-        }
-
-        // Form submission
-        document.getElementById('bookingForm').addEventListener('submit', function(e) {
-            e.preventDefault();
-            
-            const formData = new FormData(this);
-            const data = Object.fromEntries(formData);
-            
-            // Validate driver profile selection
-            if (!data.driverProfile) {
-                alert('Por favor, selecione o perfil do motorista desejado.');
-                return;
-            }
-            
-            // Here you would typically send the data to a server
-            alert('Solicitação enviada com sucesso! Entraremos em contato em breve.');
-            
-            // Reset form
-            this.reset();
-            document.querySelectorAll('.profile-option').forEach(option => 
-                option.classList.remove('selected')
-            );
-        });
-
-        // Smooth scrolling for navigation links
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                const target = document.querySelector(this.getAttribute('href'));
-                if (target) {
-                    target.scrollIntoView({
-                        behavior: 'smooth',
-                        block: 'start'
-                    });
+        // Fechar menu ao clicar nos links de âncora
+        document.querySelectorAll('a[href^="#"]').forEach(a=>{
+            a.addEventListener('click', (e)=>{
+                const target = document.querySelector(a.getAttribute('href'));
+                if(target){
+                    e.preventDefault();
+                    target.scrollIntoView({behavior:'smooth', block:'start'});
                 }
-                
-                // Close mobile menu if open
-                document.querySelector('.nav-links').classList.remove('active');
+                document.getElementById('navLinks').classList.remove('active');
             });
         });
 
-        // Intersection Observer for animations
-        const observerOptions = {
-            threshold: 0.1,
-            rootMargin: '0px 0px -50px 0px'
-        };
+        // ====== Seleção de perfil do motorista (corrigido sem usar 'event' implícito) ======
+        function selectProfile(profile, element){
+            document.querySelectorAll('.profile-option').forEach(opt=>opt.classList.remove('selected'));
+            element.classList.add('selected');
+            document.getElementById('driverProfile').value = profile;
+        }
 
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.style.opacity = '1';
-                    entry.target.style.transform = 'translateY(0)';
+        // ====== Observers de animação suave ======
+        const observerOptions = { threshold: .1, rootMargin: '0px 0px -50px 0px' };
+        const observer = new IntersectionObserver((entries)=>{
+            entries.forEach(entry=>{
+                if(entry.isIntersecting){
+                    entry.target.style.opacity='1';
+                    entry.target.style.transform='translateY(0)';
                 }
             });
         }, observerOptions);
 
-        // Observe all fade-in-up elements
-        document.querySelectorAll('.fade-in-up').forEach(el => {
-            el.style.opacity = '0';
-            el.style.transform = 'translateY(30px)';
-            el.style.transition = 'opacity 0.8s ease-out, transform 0.8s ease-out';
+        document.querySelectorAll('.fade-in-up').forEach(el=>{
+            el.style.opacity='0';
+            el.style.transform='translateY(30px)';
+            el.style.transition='opacity .8s ease-out, transform .8s ease-out';
             observer.observe(el);
         });
 
-        // Set minimum date to today
-        document.getElementById('date').min = new Date().toISOString().split('T')[0];
+        // ====== UX: mínimo da data = hoje ======
+        (function setMinDateToday(){
+            const d = document.getElementById('date');
+            if(d){ d.min = new Date().toISOString().split('T')[0]; }
+        })();
 
-        // Auto-resize textarea
-        document.getElementById('observations').addEventListener('input', function() {
-            this.style.height = 'auto';
-            this.style.height = this.scrollHeight + 'px';
-        });
+        // ====== Auto-resize da textarea ======
+        (function autoResize(){
+            const ta = document.getElementById('observations');
+            if(!ta) return;
+            ta.addEventListener('input', function(){
+                this.style.height='auto';
+                this.style.height = this.scrollHeight + 'px';
+            });
+        })();
 
-        // Add loading state to submit button
-        document.getElementById('bookingForm').addEventListener('submit', function() {
+        // ====== Envio do formulário -> WhatsApp ======
+        document.getElementById('bookingForm').addEventListener('submit', function(e){
+            e.preventDefault();
+
             const submitBtn = this.querySelector('.submit-btn');
             const originalText = submitBtn.textContent;
+
+            const formData = new FormData(this);
+            const data = Object.fromEntries(formData);
+
+            // Validação básica
+            if(!data.driverProfile){
+                alert('Por favor, selecione o perfil do motorista desejado.');
+                return;
+            }
+            if(!data.name || !data.phone || !data.email || !data.service || !data.date || !data.time || !data.pickup || !data.destination){
+                alert('Preencha todos os campos obrigatórios.');
+                return;
+            }
+
+            // Loading
             submitBtn.textContent = 'Enviando...';
             submitBtn.disabled = true;
-            
-            setTimeout(() => {
+
+            // Monta mensagem
+            const msg =
+`🚖 *Solicitação de Serviço - Executive Driver* 🚖
+
+*Nome:* ${data.name}
+*Telefone:* ${data.phone}
+*E-mail:* ${data.email}
+
+*Serviço:* ${data.service}
+*Data:* ${data.date}
+*Horário:* ${data.time}
+
+*Embarque:* ${data.pickup}
+*Destino:* ${data.destination}
+
+*Perfil do Motorista:* ${data.driverProfile}
+*Observações:* ${data.observations ? data.observations : '—'}
+`;
+
+            // Abre WhatsApp com mensagem
+            const url = `https://wa.me/${WHATS_NUMBER}?text=${encodeURIComponent(msg)}`;
+            window.open(url, '_blank', 'noopener,noreferrer');
+
+            // Restaura estado do botão e mantemos os dados (não resetamos para permitir reenvio/ajustes)
+            setTimeout(()=>{
                 submitBtn.textContent = originalText;
                 submitBtn.disabled = false;
-            }, 2000);
+            }, 1200);
         });
 
-        // Header background on scroll
-        window.addEventListener('scroll', function() {
+        // ====== Header opacidade ao rolar ======
+        window.addEventListener('scroll', ()=>{
             const header = document.querySelector('header');
-            if (window.scrollY > 100) {
-                header.style.background = 'rgba(26, 26, 26, 0.98)';
-            } else {
-                header.style.background = 'rgba(26, 26, 26, 0.95)';
-            }
+            header.style.background = (window.scrollY > 100) ? 'rgba(26,26,26,.98)' : 'rgba(26,26,26,.95)';
         });
     </script>
 </body>
 </html>
+```
 
+Se quiser, eu também acrescento **máscara de telefone** e validação de formato BR, ou um botão “Copiar mensagem” como fallback.
